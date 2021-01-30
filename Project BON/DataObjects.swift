@@ -57,7 +57,7 @@ func fetchPositivityRate(completion: @escaping (OverviewData?) -> Void) {
 
 //Fetches undergrad positive count from Google Sheet
 //Take last seven integers from fetchNumPositives1 + last seven integers from fetchNumPositives2 to get total undergrad positive count from prior week
-func fetchNumPositives1(completion: @escaping (OverviewData?) -> Void) {
+func fetchNumPositives1(completion: @escaping (Int?) -> Void) {
     
     let url = URL(string:"https://sheets.googleapis.com/v4/spreadsheets/1QorVReLcwOEsqDEgWhVAlIlU3zJRNwu8m975aQ8MXpE/values/Dashboard%20Charts!B:B?key=AIzaSyC7YqhHjTh3thjtdDdGNPQvcvWXXTopeYA")!
     //Decodes JSON returned from API into active Park objects
@@ -67,7 +67,33 @@ func fetchNumPositives1(completion: @escaping (OverviewData?) -> Void) {
         let jsonDecoder = JSONDecoder()
         if let data = data,
            let dataDecoded = try? jsonDecoder.decode(OverviewData.self, from: data){
-            completion(dataDecoded)
+            let arraySlice = dataDecoded.nestedData?.suffix(7)
+            let stringArray = arraySlice?.reduce([], +)
+            let intArray = stringArray?.compactMap { Int($0) }
+            let firstSum = intArray?.reduce(0, +) ?? 0
+            completion(firstSum)
+        } else {
+            completion(nil)
+        }
+    }
+    task.resume()
+}
+
+func fetchNumPositives2(completion: @escaping (Int?) -> Void) {
+    
+    let url = URL(string:"https://sheets.googleapis.com/v4/spreadsheets/1QorVReLcwOEsqDEgWhVAlIlU3zJRNwu8m975aQ8MXpE/values/Dashboard%20Charts!C:C?key=AIzaSyC7YqhHjTh3thjtdDdGNPQvcvWXXTopeYA")!
+    //Decodes JSON returned from API into active Park objects
+    
+    let task = URLSession.shared.dataTask(with: url) { (data,
+                                                        response, error) in
+        let jsonDecoder = JSONDecoder()
+        if let data = data,
+           let dataDecoded = try? jsonDecoder.decode(OverviewData.self, from: data){
+            let arraySlice = dataDecoded.nestedData?.suffix(7)
+            let stringArray = arraySlice?.reduce([], +)
+            let intArray = stringArray?.compactMap { Int($0) }
+            let secondSum = intArray?.reduce(0, +) ?? 0
+            completion(secondSum)
         } else {
             completion(nil)
         }
