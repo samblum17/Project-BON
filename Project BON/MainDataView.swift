@@ -10,26 +10,51 @@ import SwiftUI
 struct MainDataView: View {
     @State private var positivityRate: String = "0.00"
     @State private var numPositives: String = "0"
+    @State private var week: String = "Nov. 1"
     
     var body: some View {
-        ZStack{
+        ZStack {
+            Color.black.ignoresSafeArea()
             VStack{
-                Text("\(positivityRate)")
+                Image("ADSU").resizable().scaledToFit()
+                Text("Week of \(week)")
+                    .foregroundColor(.white)
+                    .font(.largeTitle)
                     .onAppear{
-                        fetchPositivityRate(completion: { (retrievedData) in
-                            positivityRate = retrievedData?.nestedData?.first?.first ?? "0.00"
+                        fetchWeek(completion: { (retrievedData) in
+                            week = retrievedData?.nestedData?.first?.first ?? "Nov. 1"
                         })
                     }
-                Text("\(numPositives)")
-                    .padding()
-                    .onAppear{
-                        fetchNumPositives1(completion: { (retrievedData) in
-                            fetchNumPositives2(completion: {(retrievedData2) in
-                                let temp = (retrievedData ?? 0) + (retrievedData2 ?? 0)
-                                numPositives = "\(temp)"
+                    .padding(.bottom)
+                    .padding(.bottom)
+                    .padding(.bottom)
+                VStack(alignment: .leading){
+                    Text("\(numPositives)")
+                        .foregroundColor(.yellow)
+                        .font(.largeTitle)
+                        .onAppear{
+                            fetchNumPositives1(completion: { (retrievedData) in
+                                fetchNumPositives2(completion: {(retrievedData2) in
+                                    let temp = (retrievedData ?? 0) + (retrievedData2 ?? 0)
+                                    numPositives = "\(temp)"
+                                })
                             })
-                        })
-                    }
+                        }
+                    Text("undergraduate positive results")
+                        .foregroundColor(.white)
+                        .padding(.bottom)
+                    Text("\(positivityRate)")
+                        .foregroundColor(.yellow)
+                        .font(.largeTitle)
+                        .onAppear{
+                            fetchPositivityRate(completion: { (retrievedData) in
+                                positivityRate = retrievedData?.nestedData?.first?.first ?? "0.00"
+                            })
+                        }
+                    Text("campus-wide positivity rate")
+                        .foregroundColor(.white)
+                    Spacer()
+                }
             }
         }
     }

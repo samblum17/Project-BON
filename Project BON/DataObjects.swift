@@ -100,3 +100,25 @@ func fetchNumPositives2(completion: @escaping (Int?) -> Void) {
     }
     task.resume()
 }
+
+//Fetches week from Google Sheet
+func fetchWeek(completion: @escaping (OverviewData?) -> Void) {
+    
+    let url = URL(string:"https://sheets.googleapis.com/v4/spreadsheets/1QorVReLcwOEsqDEgWhVAlIlU3zJRNwu8m975aQ8MXpE/values/Positivity%20Rate!A2?key=AIzaSyC7YqhHjTh3thjtdDdGNPQvcvWXXTopeYA")!
+    
+    //Decodes JSON returned from API into active Park objects
+    
+    let task = URLSession.shared.dataTask(with: url) { (data,
+                                                        response, error) in
+        let jsonDecoder = JSONDecoder()
+        if let data = data,
+           let dataDecoded = try? jsonDecoder.decode(OverviewData.self, from: data){
+            completion(dataDecoded)
+        } else {
+            completion(nil)
+        }
+    }
+    task.resume()
+}
+
+
