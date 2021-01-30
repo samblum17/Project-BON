@@ -8,18 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		E4F7095625C49DCF009A8ED5 /* Project_BONApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F7095525C49DCF009A8ED5 /* Project_BONApp.swift */; };
-		E4F7095825C49DCF009A8ED5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F7095725C49DCF009A8ED5 /* ContentView.swift */; };
+		E4F7095825C49DCF009A8ED5 /* MainDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F7095725C49DCF009A8ED5 /* MainDataView.swift */; };
 		E4F7095A25C49DD0009A8ED5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4F7095925C49DD0009A8ED5 /* Assets.xcassets */; };
 		E4F7095D25C49DD0009A8ED5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4F7095C25C49DD0009A8ED5 /* Preview Assets.xcassets */; };
+		E4F7096625C4A213009A8ED5 /* DataObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F7096525C4A213009A8ED5 /* DataObjects.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E4F7095225C49DCF009A8ED5 /* Project BON.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project BON.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F7095525C49DCF009A8ED5 /* Project_BONApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project_BONApp.swift; sourceTree = "<group>"; };
-		E4F7095725C49DCF009A8ED5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E4F7095725C49DCF009A8ED5 /* MainDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDataView.swift; sourceTree = "<group>"; };
 		E4F7095925C49DD0009A8ED5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4F7095C25C49DD0009A8ED5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E4F7095E25C49DD0009A8ED5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4F7096525C4A213009A8ED5 /* DataObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObjects.swift; sourceTree = "<group>"; };
+		E4F9663D25C4FCCF002E04DE /* Project-BON Network Requests.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "Project-BON Network Requests.playground"; path = "../../Project-BON Network Requests.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +55,10 @@
 		E4F7095425C49DCF009A8ED5 /* Project BON */ = {
 			isa = PBXGroup;
 			children = (
+				E4F9663D25C4FCCF002E04DE /* Project-BON Network Requests.playground */,
 				E4F7095525C49DCF009A8ED5 /* Project_BONApp.swift */,
-				E4F7095725C49DCF009A8ED5 /* ContentView.swift */,
+				E4F7095725C49DCF009A8ED5 /* MainDataView.swift */,
+				E4F7096525C4A213009A8ED5 /* DataObjects.swift */,
 				E4F7095925C49DD0009A8ED5 /* Assets.xcassets */,
 				E4F7095E25C49DD0009A8ED5 /* Info.plist */,
 				E4F7095B25C49DD0009A8ED5 /* Preview Content */,
@@ -138,7 +143,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4F7095825C49DCF009A8ED5 /* ContentView.swift in Sources */,
+				E4F7095825C49DCF009A8ED5 /* MainDataView.swift in Sources */,
+				E4F7096625C4A213009A8ED5 /* DataObjects.swift in Sources */,
 				E4F7095625C49DCF009A8ED5 /* Project_BONApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
