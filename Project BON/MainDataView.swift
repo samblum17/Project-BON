@@ -15,23 +15,22 @@ struct MainDataView: View {
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
-            VStack{
+            VStack(alignment: .leading){
                 Image("ADSU").resizable().scaledToFit()
-                Text("Week of \(week)")
-                    .foregroundColor(.white)
-                    .font(.largeTitle)
-                    .onAppear{
-                        fetchWeek(completion: { (retrievedData) in
-                            week = retrievedData?.nestedData?.first?.first ?? "Nov. 1"
-                        })
-                    }
-                    .padding(.bottom)
-                    .padding(.bottom)
-                    .padding(.bottom)
                 VStack(alignment: .leading){
+                    Text("Week of \(week)")
+                        .foregroundColor(.white)
+                        .font(.largeTitle)
+                        .onAppear{
+                            fetchWeek(completion: { (retrievedData) in
+                                week = retrievedData?.nestedData?.first?.first ?? "Nov. 1"
+                            })
+                        }
+                        .padding(.bottom)
+                        .padding(.bottom)
                     Text("\(numPositives)")
                         .foregroundColor(.yellow)
-                        .font(.largeTitle)
+                        .font(.system(size: 70))
                         .onAppear{
                             fetchNumPositives1(completion: { (retrievedData) in
                                 fetchNumPositives2(completion: {(retrievedData2) in
@@ -43,9 +42,10 @@ struct MainDataView: View {
                     Text("undergraduate positive results")
                         .foregroundColor(.white)
                         .padding(.bottom)
+                        .padding(.bottom)
                     Text("\(positivityRate)")
                         .foregroundColor(.yellow)
-                        .font(.largeTitle)
+                        .font(.system(size: 60))
                         .onAppear{
                             fetchPositivityRate(completion: { (retrievedData) in
                                 positivityRate = retrievedData?.nestedData?.first?.first ?? "0.00"
@@ -54,7 +54,7 @@ struct MainDataView: View {
                     Text("campus-wide positivity rate")
                         .foregroundColor(.white)
                     Spacer()
-                }
+                }.padding(.leading)
             }
         }
     }
