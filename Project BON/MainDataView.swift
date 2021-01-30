@@ -13,6 +13,7 @@ struct MainDataView: View {
     @State private var week: String = "Nov. 1"
     
     var body: some View {
+        NavigationView{
         ZStack {
             Color.black.ignoresSafeArea()
             VStack(alignment: .leading){
@@ -54,8 +55,16 @@ struct MainDataView: View {
                     Text("campus-wide positivity rate")
                         .foregroundColor(.white)
                     Spacer()
+                    NavigationLink(destination: Help(), label: {
+                        Image(systemName: "questionmark.circle").resizable()
+                            .frame(width: 30, height: 30, alignment: .leading)
+                            .foregroundColor(.init(UIColor.systemGray))
+                    })
+                    .navigationBarBackButtonHidden(true)
+                    .navigationBarHidden(true)
                 }.padding(.leading)
             }
+        }
         }
     }
     

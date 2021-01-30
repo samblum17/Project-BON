@@ -12,6 +12,8 @@
 		E4F7095A25C49DD0009A8ED5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4F7095925C49DD0009A8ED5 /* Assets.xcassets */; };
 		E4F7095D25C49DD0009A8ED5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4F7095C25C49DD0009A8ED5 /* Preview Assets.xcassets */; };
 		E4F7096625C4A213009A8ED5 /* DataObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F7096525C4A213009A8ED5 /* DataObjects.swift */; };
+		E4F9664825C52D56002E04DE /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F9664725C52D56002E04DE /* Help.swift */; };
+		E4F9664B25C52EEA002E04DE /* SafariVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F9664A25C52EEA002E04DE /* SafariVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,8 @@
 		E4F7095E25C49DD0009A8ED5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4F7096525C4A213009A8ED5 /* DataObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObjects.swift; sourceTree = "<group>"; };
 		E4F9663D25C4FCCF002E04DE /* Project-BON Network Requests.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "Project-BON Network Requests.playground"; path = "../../Project-BON Network Requests.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		E4F9664725C52D56002E04DE /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
+		E4F9664A25C52EEA002E04DE /* SafariVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +62,9 @@
 				E4F9663D25C4FCCF002E04DE /* Project-BON Network Requests.playground */,
 				E4F7095525C49DCF009A8ED5 /* Project_BONApp.swift */,
 				E4F7095725C49DCF009A8ED5 /* MainDataView.swift */,
+				E4F9664725C52D56002E04DE /* Help.swift */,
 				E4F7096525C4A213009A8ED5 /* DataObjects.swift */,
+				E4F9664A25C52EEA002E04DE /* SafariVC.swift */,
 				E4F7095925C49DD0009A8ED5 /* Assets.xcassets */,
 				E4F7095E25C49DD0009A8ED5 /* Info.plist */,
 				E4F7095B25C49DD0009A8ED5 /* Preview Content */,
@@ -145,6 +151,8 @@
 			files = (
 				E4F7095825C49DCF009A8ED5 /* MainDataView.swift in Sources */,
 				E4F7096625C4A213009A8ED5 /* DataObjects.swift in Sources */,
+				E4F9664B25C52EEA002E04DE /* SafariVC.swift in Sources */,
+				E4F9664825C52D56002E04DE /* Help.swift in Sources */,
 				E4F7095625C49DCF009A8ED5 /* Project_BONApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
