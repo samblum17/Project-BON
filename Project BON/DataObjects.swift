@@ -33,11 +33,9 @@ struct OverviewData: Codable {
     
     //Fetches positivity rate from Google Sheet
 func fetchPositivityRate(completion: @escaping (OverviewData?) -> Void) {
-        
-        let url = URL(string:"https://sheets.googleapis.com/v4/spreadsheets/1QorVReLcwOEsqDEgWhVAlIlU3zJRNwu8m975aQ8MXpE/values/Positivity%20Rate!B2?key=AIzaSyC7YqhHjTh3thjtdDdGNPQvcvWXXTopeYA")!
-        
-        //Decodes JSON returned from API into active Park objects
-        
+// FIXME- Switch URL back after testing
+//        let url = URL(string:"https://sheets.googleapis.com/v4/spreadsheets/1QorVReLcwOEsqDEgWhVAlIlU3zJRNwu8m975aQ8MXpE/values/Positivity%20Rate!B2?key=AIzaSyC7YqhHjTh3thjtdDdGNPQvcvWXXTopeYA")!
+    let url = URL(string:"https://sheets.googleapis.com/v4/spreadsheets/1ppq7WADIK2HKVrbxEEDPUW-2_kcyh76lAmgOaK7EDVU/values/Positivity%20Rate!B2?key=AIzaSyC7YqhHjTh3thjtdDdGNPQvcvWXXTopeYA")!
         let task = URLSession.shared.dataTask(with: url) { (data,
                                                             response, error) in
             let jsonDecoder = JSONDecoder()
@@ -60,7 +58,6 @@ func fetchPositivityRate(completion: @escaping (OverviewData?) -> Void) {
 func fetchNumPositives1(completion: @escaping (Int?) -> Void) {
     
     let url = URL(string:"https://sheets.googleapis.com/v4/spreadsheets/1QorVReLcwOEsqDEgWhVAlIlU3zJRNwu8m975aQ8MXpE/values/Dashboard%20Charts!B:B?key=AIzaSyC7YqhHjTh3thjtdDdGNPQvcvWXXTopeYA")!
-    //Decodes JSON returned from API into active Park objects
     
     let task = URLSession.shared.dataTask(with: url) { (data,
                                                         response, error) in
@@ -82,8 +79,6 @@ func fetchNumPositives1(completion: @escaping (Int?) -> Void) {
 func fetchNumPositives2(completion: @escaping (Int?) -> Void) {
     
     let url = URL(string:"https://sheets.googleapis.com/v4/spreadsheets/1QorVReLcwOEsqDEgWhVAlIlU3zJRNwu8m975aQ8MXpE/values/Dashboard%20Charts!C:C?key=AIzaSyC7YqhHjTh3thjtdDdGNPQvcvWXXTopeYA")!
-    //Decodes JSON returned from API into active Park objects
-    
     let task = URLSession.shared.dataTask(with: url) { (data,
                                                         response, error) in
         let jsonDecoder = JSONDecoder()
@@ -105,9 +100,7 @@ func fetchNumPositives2(completion: @escaping (Int?) -> Void) {
 func fetchWeek(completion: @escaping (OverviewData?) -> Void) {
     
     let url = URL(string:"https://sheets.googleapis.com/v4/spreadsheets/1QorVReLcwOEsqDEgWhVAlIlU3zJRNwu8m975aQ8MXpE/values/Positivity%20Rate!A2?key=AIzaSyC7YqhHjTh3thjtdDdGNPQvcvWXXTopeYA")!
-    
-    //Decodes JSON returned from API into active Park objects
-    
+
     let task = URLSession.shared.dataTask(with: url) { (data,
                                                         response, error) in
         let jsonDecoder = JSONDecoder()
