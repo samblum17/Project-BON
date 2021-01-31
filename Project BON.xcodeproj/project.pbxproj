@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76089766946E2A619BA7E052 /* Pods_Project_BON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DDC518F253FC45962C7C71 /* Pods_Project_BON.framework */; };
 		E42A6C5325C6078E00EC6A03 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E42A6C5225C6078E00EC6A03 /* GoogleService-Info.plist */; };
 		E4F7095625C49DCF009A8ED5 /* Project_BONApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F7095525C49DCF009A8ED5 /* Project_BONApp.swift */; };
 		E4F7095825C49DCF009A8ED5 /* MainDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F7095725C49DCF009A8ED5 /* MainDataView.swift */; };
@@ -18,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		37DDC518F253FC45962C7C71 /* Pods_Project_BON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_BON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		79D8343380CCA84950058F55 /* Pods-Project BON.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project BON.debug.xcconfig"; path = "Target Support Files/Pods-Project BON/Pods-Project BON.debug.xcconfig"; sourceTree = "<group>"; };
+		BE44E6627C0F8232C10B95B0 /* Pods-Project BON.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project BON.release.xcconfig"; path = "Target Support Files/Pods-Project BON/Pods-Project BON.release.xcconfig"; sourceTree = "<group>"; };
 		E42A6C5025C606B100EC6A03 /* Project BON.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Project BON.entitlements"; sourceTree = "<group>"; };
 		E42A6C5225C6078E00EC6A03 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E4F7095225C49DCF009A8ED5 /* Project BON.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project BON.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,17 +41,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76089766946E2A619BA7E052 /* Pods_Project_BON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D57E036515901AE12608CE81 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				79D8343380CCA84950058F55 /* Pods-Project BON.debug.xcconfig */,
+				BE44E6627C0F8232C10B95B0 /* Pods-Project BON.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		DBBA61D721B8AC50E60CAC85 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				37DDC518F253FC45962C7C71 /* Pods_Project_BON.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E4F7094925C49DCF009A8ED5 = {
 			isa = PBXGroup;
 			children = (
 				E4F7095425C49DCF009A8ED5 /* Project BON */,
 				E4F7095325C49DCF009A8ED5 /* Products */,
+				D57E036515901AE12608CE81 /* Pods */,
+				DBBA61D721B8AC50E60CAC85 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,8 +86,8 @@
 		E4F7095425C49DCF009A8ED5 /* Project BON */ = {
 			isa = PBXGroup;
 			children = (
-				E42A6C5025C606B100EC6A03 /* Project BON.entitlements */,
 				E4F9663D25C4FCCF002E04DE /* Project-BON Network Requests.playground */,
+				E42A6C5025C606B100EC6A03 /* Project BON.entitlements */,
 				E4F7095525C49DCF009A8ED5 /* Project_BONApp.swift */,
 				E4F7095725C49DCF009A8ED5 /* MainDataView.swift */,
 				E4F9664725C52D56002E04DE /* Help.swift */,
@@ -92,9 +116,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E4F7096125C49DD0009A8ED5 /* Build configuration list for PBXNativeTarget "Project BON" */;
 			buildPhases = (
+				E9569635AA51CC17250C0308 /* [CP] Check Pods Manifest.lock */,
 				E4F7094E25C49DCF009A8ED5 /* Sources */,
 				E4F7094F25C49DCF009A8ED5 /* Frameworks */,
 				E4F7095025C49DCF009A8ED5 /* Resources */,
+				BE5B29B2A412645A2BB18E8F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -149,6 +175,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BE5B29B2A412645A2BB18E8F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Project BON/Pods-Project BON-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Project BON/Pods-Project BON-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Project BON/Pods-Project BON-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E9569635AA51CC17250C0308 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Project BON-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E4F7094E25C49DCF009A8ED5 /* Sources */ = {
@@ -284,6 +352,7 @@
 		};
 		E4F7096225C49DD0009A8ED5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79D8343380CCA84950058F55 /* Pods-Project BON.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -307,6 +376,7 @@
 		};
 		E4F7096325C49DD0009A8ED5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE44E6627C0F8232C10B95B0 /* Pods-Project BON.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
