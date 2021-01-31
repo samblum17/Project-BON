@@ -8,6 +8,7 @@
 import SwiftUI
 import SafariServices
 
+//Help screen
 struct Help: View {
     @State private var showingTable = false
     @State private var showingProtocols = false

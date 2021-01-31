@@ -7,8 +7,7 @@
 
 import Foundation
 
-//File to hold the few data structs that will retrieve latest data from Google Sheets
-
+//Hold the few data structs that will retrieve latest data from Google Sheets
 struct OverviewData: Codable {
     var range: String?
     var majorDimension: String?

@@ -20,7 +20,7 @@ struct Project_BONApp: App {
     }
 }
 
-
+//Implement AppDelegate to receive notifications from Firebase
 class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
     let gcmMessageIDKey = "gcm.message_id"
     

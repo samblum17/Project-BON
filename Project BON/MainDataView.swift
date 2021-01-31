@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//The main UI view with COVID-19 data from the most recent week
 struct MainDataView: View {
     @State private var positivityRate: String = "0.00"
     @State private var numPositives: String = "0"
