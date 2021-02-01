@@ -55,6 +55,21 @@ struct MainDataView: View {
                         }
                     Text("campus-wide positivity rate")
                         .foregroundColor(.white)
+                        .padding(.bottom)
+                        .padding(.bottom)
+                    Button(action: {
+                        fetchNumPositives1(completion: { (retrievedData) in
+                            fetchNumPositives2(completion: {(retrievedData2) in
+                                let temp = (retrievedData ?? 0) + (retrievedData2 ?? 0)
+                                numPositives = "\(temp)"
+                            })
+                        })
+                        fetchPositivityRate(completion: { (retrievedData) in
+                            positivityRate = retrievedData?.nestedData?.first?.first ?? "0.00"
+                        })
+                    }, label: {
+                        Image(systemName: "arrow.clockwise.circle").resizable() .frame(width: 30, height: 30, alignment: .leading).foregroundColor(.yellow)
+                    })
                     Spacer()
                     NavigationLink(destination: Help(), label: {
                         Image(systemName: "questionmark.circle").resizable()
