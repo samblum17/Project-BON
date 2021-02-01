@@ -29,26 +29,26 @@ struct OverviewData: Codable {
     }
     
 }
-    
-    //Fetches positivity rate from Google Sheet
+
+//Fetches positivity rate from Google Sheet
 func fetchPositivityRate(completion: @escaping (OverviewData?) -> Void) {
-// FIXME- Switch URL back after testing
-//        let url = URL(string:"https://sheets.googleapis.com/v4/spreadsheets/1QorVReLcwOEsqDEgWhVAlIlU3zJRNwu8m975aQ8MXpE/values/Positivity%20Rate!B2?key=AIzaSyC7YqhHjTh3thjtdDdGNPQvcvWXXTopeYA")!
+    // FIXME- Switch URL back after testing
+    //        let url = URL(string:"https://sheets.googleapis.com/v4/spreadsheets/1QorVReLcwOEsqDEgWhVAlIlU3zJRNwu8m975aQ8MXpE/values/Positivity%20Rate!B2?key=AIzaSyC7YqhHjTh3thjtdDdGNPQvcvWXXTopeYA")!
     let url = URL(string:"https://sheets.googleapis.com/v4/spreadsheets/1ppq7WADIK2HKVrbxEEDPUW-2_kcyh76lAmgOaK7EDVU/values/Positivity%20Rate!B2?key=AIzaSyC7YqhHjTh3thjtdDdGNPQvcvWXXTopeYA")!
-        let task = URLSession.shared.dataTask(with: url) { (data,
-                                                            response, error) in
-            let jsonDecoder = JSONDecoder()
-            if let data = data,
-               let dataDecoded = try? jsonDecoder.decode(OverviewData.self, from: data){
-                completion(dataDecoded)
-            } else {
-                completion(nil)
-            }
+    let task = URLSession.shared.dataTask(with: url) { (data,
+                                                        response, error) in
+        let jsonDecoder = JSONDecoder()
+        if let data = data,
+           let dataDecoded = try? jsonDecoder.decode(OverviewData.self, from: data){
+            completion(dataDecoded)
+        } else {
+            completion(nil)
         }
-        task.resume()
     }
-    
-    //NOTE: when fetching in app, return [RESULT].nestedData and first item is the percentage
+    task.resume()
+}
+
+//NOTE: when fetching in app, return [RESULT].nestedData and first item is the percentage
 
 
 
@@ -56,7 +56,7 @@ func fetchPositivityRate(completion: @escaping (OverviewData?) -> Void) {
 //Take last seven integers from fetchNumPositives1 + last seven integers from fetchNumPositives2 to get total undergrad positive count from prior week
 func fetchNumPositives1(completion: @escaping (Int?) -> Void) {
     
-    let url = URL(string:"https://sheets.googleapis.com/v4/spreadsheets/1QorVReLcwOEsqDEgWhVAlIlU3zJRNwu8m975aQ8MXpE/values/Dashboard%20Charts!B:B?key=AIzaSyC7YqhHjTh3thjtdDdGNPQvcvWXXTopeYA")!
+    let url = URL(string:"https://sheets.googleapis.com/v4/spreadsheets/1QorVReLcwOEsqDEgWhVAlIlU3zJRNwu8m975aQ8MXpE/values/Spring%202021%20Dashboard%20Charts!B:B?key=AIzaSyC7YqhHjTh3thjtdDdGNPQvcvWXXTopeYA")!
     
     let task = URLSession.shared.dataTask(with: url) { (data,
                                                         response, error) in
@@ -77,7 +77,7 @@ func fetchNumPositives1(completion: @escaping (Int?) -> Void) {
 
 func fetchNumPositives2(completion: @escaping (Int?) -> Void) {
     
-    let url = URL(string:"https://sheets.googleapis.com/v4/spreadsheets/1QorVReLcwOEsqDEgWhVAlIlU3zJRNwu8m975aQ8MXpE/values/Dashboard%20Charts!C:C?key=AIzaSyC7YqhHjTh3thjtdDdGNPQvcvWXXTopeYA")!
+    let url = URL(string:"https://sheets.googleapis.com/v4/spreadsheets/1QorVReLcwOEsqDEgWhVAlIlU3zJRNwu8m975aQ8MXpE/values/Spring%202021%20Dashboard%20Charts!C:C?key=AIzaSyC7YqhHjTh3thjtdDdGNPQvcvWXXTopeYA")!
     let task = URLSession.shared.dataTask(with: url) { (data,
                                                         response, error) in
         let jsonDecoder = JSONDecoder()
@@ -99,7 +99,7 @@ func fetchNumPositives2(completion: @escaping (Int?) -> Void) {
 func fetchWeek(completion: @escaping (OverviewData?) -> Void) {
     
     let url = URL(string:"https://sheets.googleapis.com/v4/spreadsheets/1QorVReLcwOEsqDEgWhVAlIlU3zJRNwu8m975aQ8MXpE/values/Positivity%20Rate!A2?key=AIzaSyC7YqhHjTh3thjtdDdGNPQvcvWXXTopeYA")!
-
+    
     let task = URLSession.shared.dataTask(with: url) { (data,
                                                         response, error) in
         let jsonDecoder = JSONDecoder()
