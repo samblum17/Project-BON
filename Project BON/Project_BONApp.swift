@@ -16,6 +16,7 @@ struct Project_BONApp: App {
     var body: some Scene {
         WindowGroup {
             MainDataView()
+                .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }

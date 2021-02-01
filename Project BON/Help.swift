@@ -36,7 +36,7 @@ struct Help: View {
                     self.showingTable.toggle()
                 }) {
                     Text("https://docs.google.com/spreadsheets/d/1QorVReLcwOEsqDEgWhVAlIlU3zJRNwu8m975aQ8MXpE/edit#gid=693781790")
-                        .foregroundColor(Color.blue)
+                        .foregroundColor(Color.yellow)
                 }.sheet(isPresented: $showingTable, content:{
                     SafariView(safariVC: SFSafariViewController(url: URL(string: "https://docs.google.com/spreadsheets/d/1QorVReLcwOEsqDEgWhVAlIlU3zJRNwu8m975aQ8MXpE/edit#gid=693781790")!), urlString: "https://docs.google.com/spreadsheets/d/1QorVReLcwOEsqDEgWhVAlIlU3zJRNwu8m975aQ8MXpE/edit#gid=693781790")
                 })
@@ -50,7 +50,7 @@ struct Help: View {
                     self.showingDash.toggle()
                 }) {
                     Text("https://www.vanderbilt.edu/coronavirus/covid19dashboard/")
-                        .foregroundColor(Color.blue)
+                        .foregroundColor(Color.yellow)
                 }.sheet(isPresented: $showingDash, content:{
                     SafariView(safariVC: SFSafariViewController(url: URL(string: "https://www.vanderbilt.edu/coronavirus/covid19dashboard/")!), urlString: "https://www.vanderbilt.edu/coronavirus/covid19dashboard/")
                 })
@@ -63,7 +63,7 @@ struct Help: View {
                     self.showingProtocols.toggle()
                 }) {
                     Text("https://www.vanderbilt.edu/coronavirus/")
-                        .foregroundColor(Color.blue)
+                        .foregroundColor(Color.yellow)
                 }.sheet(isPresented: $showingProtocols, content:{
                     SafariView(safariVC: SFSafariViewController(url: URL(string: "https://www.vanderbilt.edu/coronavirus/")!), urlString: "https://www.vanderbilt.edu/coronavirus/")
                 })
@@ -81,8 +81,8 @@ struct Help: View {
                     }
                 }) {
                     HStack {
-                        Image(systemName: "envelope")
-                        Text("Contact Developer")
+                        Image(systemName: "envelope").foregroundColor(.yellow)
+                        Text("Contact Developer").foregroundColor(.yellow)
                     }
                 }
                 .sheet(isPresented: $isShowingMailView) {
