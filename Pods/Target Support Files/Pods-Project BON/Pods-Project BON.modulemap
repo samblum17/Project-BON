@@ -1,6 +1,0 @@
-framework module Pods_Project_BON {
-  umbrella header "Pods-Project BON-umbrella.h"
-
-  export *
-  module * { export * }
-}
