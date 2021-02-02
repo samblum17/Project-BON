@@ -41,21 +41,20 @@ struct MainDataView: View {
                             .font(.system(size: 70))
                             .onAppear{
                                 fetchNumPositives1(completion: { (retrievedData) in
-                                    numPositives = "\(retrievedData ?? 0)"
+                                    numPositives = retrievedData
                                 })
                             }
                         Text("positive results")
                             .foregroundColor(.white)
                             .padding(.bottom)
                             .padding(.bottom)
-                        Text("\(positivityRate)%")
+                        Text("\(positivityRate)")
                             .foregroundColor(.yellow)
                             .font(.system(size: 60))
                             .onAppear{
                                 fetchPositivityRate1(completion: { (retrievedData) in
-                                    var temp = retrievedData
-                                    temp = temp.truncate(places: 2)
-                                    positivityRate = String(temp)
+                                    let temp = retrievedData
+                                    positivityRate = temp
                                 })
                             }
                         //Positivity rate
@@ -69,10 +68,11 @@ struct MainDataView: View {
                             .foregroundColor(trendColor)
                             .font(.system(size: 60))
                             .onAppear{
+                                //Do some math to compare last week percent to this week percent
                                 fetchPositivityRate1(completion: { (retrievedData) in
                                     fetchPositivityRate2(completion: {(retrievedData2) in
-                                        let temp = Double(positivityRate) ?? 0.00
-                                        let temp2 = (retrievedData2)
+                                        let temp = Double(positivityRate.dropLast()) ?? 0.00
+                                        let temp2 = Double(retrievedData2.dropLast()) ?? 0.00
                                         var trendRate = Double(temp - temp2)
                                         trendRate = trendRate.truncate(places: 2)
                                         if (trendRate > 0){
@@ -116,19 +116,19 @@ struct MainDataView: View {
         }
     }
     
+    //Refresh button tapped
     func reloadData() {
         fetchNumPositives1(completion: { (retrievedData) in
-            numPositives = "\(retrievedData ?? 0)"
+            numPositives = retrievedData
         })
         fetchPositivityRate1(completion: { (retrievedData) in
-            var temp = retrievedData
-            temp = temp.truncate(places: 2)
-            positivityRate = String(temp)
+            let temp = retrievedData
+            positivityRate = temp
         })
         fetchPositivityRate1(completion: { (retrievedData) in
             fetchPositivityRate2(completion: {(retrievedData2) in
-                let temp = Double(positivityRate) ?? 0.00
-                let temp2 = (retrievedData2)
+                let temp = Double(positivityRate.dropLast()) ?? 0.00
+                let temp2 = Double(retrievedData2.dropLast()) ?? 0.00
                 var trendRate = Double(temp - temp2)
                 trendRate = trendRate.truncate(places: 2)
                 if (trendRate > 0){

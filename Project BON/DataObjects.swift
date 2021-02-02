@@ -29,25 +29,8 @@ struct OverviewData: Codable {
     }
 }
 
-//Fetches positivity rate from Google Sheet
-func fetchPositivityRate(completion: @escaping (OverviewData?) -> Void) {
-    // FIXME- Switch URL back after testing
-    //        let url = URL(string:"https://sheets.googleapis.com/v4/spreadsheets/1QorVReLcwOEsqDEgWhVAlIlU3zJRNwu8m975aQ8MXpE/values/Positivity%20Rate!B2?key=AIzaSyC7YqhHjTh3thjtdDdGNPQvcvWXXTopeYA")!
-    let url = URL(string:"https://sheets.googleapis.com/v4/spreadsheets/1ppq7WADIK2HKVrbxEEDPUW-2_kcyh76lAmgOaK7EDVU/values/Positivity%20Rate!B2?key=AIzaSyC7YqhHjTh3thjtdDdGNPQvcvWXXTopeYA")!
-    let task = URLSession.shared.dataTask(with: url) { (data,
-                                                        response, error) in
-        let jsonDecoder = JSONDecoder()
-        if let data = data,
-           let dataDecoded = try? jsonDecoder.decode(OverviewData.self, from: data){
-            completion(dataDecoded)
-        } else {
-            completion(nil)
-        }
-    }
-    task.resume()
-}
-
-func fetchPositivityRate1(completion: @escaping (Double) -> Void) {
+//Fetches most recent positivity rate from Google Sheet
+func fetchPositivityRate1(completion: @escaping (String) -> Void) {
     let url = URL(string:"https://sheets.googleapis.com/v4/spreadsheets/1QorVReLcwOEsqDEgWhVAlIlU3zJRNwu8m975aQ8MXpE/values/Spring%202021%20Weekly%20Rate!E:E?key=AIzaSyC7YqhHjTh3thjtdDdGNPQvcvWXXTopeYA")!
     let task = URLSession.shared.dataTask(with: url) { (data,
                                                         response, error) in
@@ -56,17 +39,17 @@ func fetchPositivityRate1(completion: @escaping (Double) -> Void) {
            let dataDecoded = try? jsonDecoder.decode(OverviewData.self, from: data){
             let arraySlice = dataDecoded.nestedData?.suffix(1)
             let stringArray = arraySlice?.reduce([], +)
-            let rateString = stringArray?.first?.dropLast()
-            let rate = Double(rateString ?? "0.00")
-            completion(rate ?? 0.00)
+            let rateStringUnpacked = stringArray?.first
+            completion(rateStringUnpacked ?? "Loading")
         } else {
-            completion(0.00)
+            completion("Loading...")
         }
     }
     task.resume()
 }
 
-func fetchPositivityRate2(completion: @escaping (Double) -> Void) {
+//Fetches last week's positivity rate for comparison for trend
+func fetchPositivityRate2(completion: @escaping (String) -> Void) {
     let url = URL(string:"https://sheets.googleapis.com/v4/spreadsheets/1QorVReLcwOEsqDEgWhVAlIlU3zJRNwu8m975aQ8MXpE/values/Spring%202021%20Weekly%20Rate!E:E?key=AIzaSyC7YqhHjTh3thjtdDdGNPQvcvWXXTopeYA")!
     let task = URLSession.shared.dataTask(with: url) { (data,
                                                         response, error) in
@@ -75,11 +58,10 @@ func fetchPositivityRate2(completion: @escaping (Double) -> Void) {
            let dataDecoded = try? jsonDecoder.decode(OverviewData.self, from: data){
             let arraySlice = dataDecoded.nestedData?.suffix(2)
             let stringArray = arraySlice?.reduce([], +)
-            let rateString = stringArray?.first?.dropLast()
-            let rate = Double(rateString ?? "0.00")
-            completion(rate ?? 0.00)
+            let rateStringUnpacked = stringArray?.first
+            completion(rateStringUnpacked ?? "Loading")
         } else {
-            completion(0.00)
+            completion("Loading...")
         }
     }
     task.resume()
@@ -92,7 +74,7 @@ func fetchPositivityRate2(completion: @escaping (Double) -> Void) {
 //Fetches undergrad positive count from Google Sheet
 //DEPRECATED VERSION- Take last seven integers from fetchNumPositives1 + last seven integers from fetchNumPositives2 to get total undergrad positive count from prior week
 //Above method for fall 2020. Current version is updated for new sheet with different math for spring 2021
-func fetchNumPositives1(completion: @escaping (Int?) -> Void) {
+func fetchNumPositives1(completion: @escaping (String) -> Void) {
     let url = URL(string:"https://sheets.googleapis.com/v4/spreadsheets/1QorVReLcwOEsqDEgWhVAlIlU3zJRNwu8m975aQ8MXpE/values/Spring%202021%20Weekly%20Rate!D:D?key=AIzaSyC7YqhHjTh3thjtdDdGNPQvcvWXXTopeYA")!
     
     let task = URLSession.shared.dataTask(with: url) { (data,
@@ -102,35 +84,16 @@ func fetchNumPositives1(completion: @escaping (Int?) -> Void) {
            let dataDecoded = try? jsonDecoder.decode(OverviewData.self, from: data){
             let arraySlice = dataDecoded.nestedData?.suffix(1)
             let stringArray = arraySlice?.reduce([], +)
-            let intArray = stringArray?.compactMap { Int($0) }
-            let firstSum = intArray?.reduce(0, +) ?? 0
-            completion(firstSum)
+            let numPositivePacked = stringArray?.compactMap { String($0) }
+            let numPositiveUnpacked = numPositivePacked?.first ?? "Loading..."
+            completion(numPositiveUnpacked)
         } else {
-            completion(nil)
+            completion("Loading...")
         }
     }
     task.resume()
 }
 
-func fetchNumPositives2(completion: @escaping (Int?) -> Void) {
-    
-    let url = URL(string:"https://sheets.googleapis.com/v4/spreadsheets/1QorVReLcwOEsqDEgWhVAlIlU3zJRNwu8m975aQ8MXpE/values/Spring%202021%20Daily%20Positive%20Tests!C:C?key=AIzaSyC7YqhHjTh3thjtdDdGNPQvcvWXXTopeYA")!
-    let task = URLSession.shared.dataTask(with: url) { (data,
-                                                        response, error) in
-        let jsonDecoder = JSONDecoder()
-        if let data = data,
-           let dataDecoded = try? jsonDecoder.decode(OverviewData.self, from: data){
-            let arraySlice = dataDecoded.nestedData?.suffix(7)
-            let stringArray = arraySlice?.reduce([], +)
-            let intArray = stringArray?.compactMap { Int($0) }
-            let secondSum = intArray?.reduce(0, +) ?? 0
-            completion(secondSum)
-        } else {
-            completion(nil)
-        }
-    }
-    task.resume()
-}
 
 //Fetches week from Google Sheet
 func fetchWeek(completion: @escaping (String) -> Void) {
@@ -152,7 +115,7 @@ func fetchWeek(completion: @escaping (String) -> Void) {
             let resultString = inputFormatter.string(from: showDate!)
             completion(resultString)
         } else {
-            completion("2021-01-01")
+            completion("Loading...")
         }
     }
     task.resume()
