@@ -99,7 +99,8 @@ struct Help: View {
             .navigationBarHidden(true)
             .navigationBarTitle(Text(""))
         }
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
+
     }
 }
 
