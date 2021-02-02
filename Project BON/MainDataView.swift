@@ -9,10 +9,10 @@ import SwiftUI
 
 //The main UI view with COVID-19 data from the most recent week
 struct MainDataView: View {
-    @State private var positivityRate: String = "loading..."
-    @State private var numPositives: String = "loading..."
-    @State private var trend: String = "loading..."
-    @State private var week: String = "loading..."
+    @State private var positivityRate: String = "Loading..."
+    @State private var numPositives: String = "Loading..."
+    @State private var trend: String = "Loading..."
+    @State private var week: String = "Loading..."
     @State private var trendColor: Color = .green //green for decrease in cases, red for increase in cases
     @State private var showingRefreshAlert = false
     
@@ -22,7 +22,7 @@ struct MainDataView: View {
                 Color.black.ignoresSafeArea()
                 //Overarching Vstack
                 VStack(alignment: .leading){
-                    Image("Pic2").resizable().scaledToFit()
+                    Image("CoverLogo").resizable().scaledToFit()
                         .padding(.bottom)
                         .padding(.bottom)
                     //Text VStack

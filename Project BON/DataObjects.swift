@@ -110,7 +110,7 @@ func fetchWeek(completion: @escaping (String) -> Void) {
             //reformat the date
             let inputFormatter = DateFormatter()
             inputFormatter.dateFormat = "yyyy-mm-dd"
-            let showDate = inputFormatter.date(from: decodedDate ?? "loading...")
+            let showDate = inputFormatter.date(from: decodedDate ?? "Loading...")
             inputFormatter.dateFormat = "MMM dd, yyyy"
             let resultString = inputFormatter.string(from: showDate!)
             completion(resultString)
