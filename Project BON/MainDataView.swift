@@ -14,6 +14,7 @@ struct MainDataView: View {
     @State private var trend: String = "loading..."
     @State private var week: String = "loading..."
     @State private var trendColor: Color = .green //green for decrease in cases, red for increase in cases
+    @State private var showingRefreshAlert = false
     
     var body: some View {
         NavigationView{
@@ -95,12 +96,16 @@ struct MainDataView: View {
                         HStack{
                             Button(action: {
                                 reloadData()
+                                self.showingRefreshAlert = true
                             }, label: {
                                 HStack {
                                     Image(systemName: "arrow.clockwise.circle").resizable() .frame(width: 30, height: 30, alignment: .leading).foregroundColor(.yellow)
                                     Text("Refresh").foregroundColor(.yellow)
                                 }
-                            })
+                            }).alert(isPresented: $showingRefreshAlert) {
+                                Alert(title: Text("Data Refreshed"), message: Text("Vandy COVID Tracker is now up-to-date with the most recent data available."), dismissButton: .default(Text("Ok")))
+                            }
+                            
                             Spacer()
                             NavigationLink(destination: Help(), label: {
                                 Image(systemName: "questionmark.circle").resizable()
