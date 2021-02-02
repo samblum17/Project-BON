@@ -20,16 +20,15 @@ struct Help: View {
     @State private var isShowingMailView = false
     
     var body: some View {
+        NavigationView{
         ZStack{
             Color.black.ignoresSafeArea()
             VStack(alignment: .leading){
-                //Navigation title
-                Text("Help").foregroundColor(.white)
-                    .font(.largeTitle).bold()
-                    .padding(.bottom)
-                    .padding(.bottom)
-                
                 //Text and button for data source
+                Text("Help").foregroundColor(.white)
+                                   .font(.largeTitle).bold()
+                                   .padding(.bottom)
+                                   .padding(.bottom)
                 Text("Data pulled from Vanderbilt University's Live COVID-19 Chart:")
                     .foregroundColor(.white)
                 Button(action: {
@@ -69,6 +68,9 @@ struct Help: View {
                 })
                 Spacer()
                 
+                //Disclaimer
+                Text("*App not affiliated with Vanderbilt University*").foregroundColor(.white).font(.system(size: 16)).padding(.bottom)
+                
                 //Contact developer button
                 Button(action: {
                     if MFMailComposeViewController.canSendMail() {
@@ -87,11 +89,16 @@ struct Help: View {
                 }
                 .sheet(isPresented: $isShowingMailView) {
                     MailView(result: $result) { composer in
-                        composer.setSubject("Vandy COVID Tracker iOS App Feedback")
+                        composer.setSubject("Vandy COVID Tracker: App Feedback")
                         composer.setToRecipients(["samblum17@icloud.com"])
                     }
                 }
-            }.padding()
+            }.padding(.leading)
+            .padding(.trailing)
+            .padding(.bottom)
+            .navigationBarHidden(true)
+            .navigationBarTitle(Text(""))
+        }
         }
     }
 }
@@ -101,3 +108,5 @@ struct Help_Previews: PreviewProvider {
         Help()
     }
 }
+
+//Note that Unlocalized, hardcoded strings were used to display text for a primarily English audience. Future updates could push with localized versions

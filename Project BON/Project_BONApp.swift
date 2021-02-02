@@ -21,7 +21,7 @@ struct Project_BONApp: App {
     }
 }
 
-//Implement AppDelegate to receive notifications from Firebase
+//Implement AppDelegate to receive push notifications from Firebase
 class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
     let gcmMessageIDKey = "gcm.message_id"
     
@@ -81,7 +81,6 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
         completionHandler(UIBackgroundFetchResult.newData)
     }
     
-    // Receive displayed notifications for iOS 10 devices.
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {

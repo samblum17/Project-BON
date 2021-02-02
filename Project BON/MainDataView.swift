@@ -19,8 +19,12 @@ struct MainDataView: View {
         NavigationView{
             ZStack {
                 Color.black.ignoresSafeArea()
+                //Overarching Vstack
                 VStack(alignment: .leading){
-                    Image("ADSU").resizable().scaledToFit()
+                    Image("Pic2").resizable().scaledToFit()
+                        .padding(.bottom)
+                        .padding(.bottom)
+                    //Text VStack
                     VStack(alignment: .leading){
                         Text("Week of \(week)")
                             .foregroundColor(.white)
@@ -31,7 +35,7 @@ struct MainDataView: View {
                                 })
                             }
                             .padding(.bottom)
-                        
+                        //Num positives
                         Text("\(numPositives)")
                             .foregroundColor(.yellow)
                             .font(.system(size: 70))
@@ -48,12 +52,13 @@ struct MainDataView: View {
                             .foregroundColor(.yellow)
                             .font(.system(size: 60))
                             .onAppear{
-                                fetchPositivityRate(completion: { (retrievedData) in
-                                    let temp = retrievedData?.nestedData?.first?.first ?? "loading..."
-                                    let temp2 = temp.dropLast()
-                                    positivityRate = String(temp2)
+                                fetchPositivityRate1(completion: { (retrievedData) in
+                                    var temp = retrievedData
+                                    temp = temp.truncate(places: 2)
+                                    positivityRate = String(temp)
                                 })
                             }
+                        //Positivity rate
                         Text("positivity rate")
                             .foregroundColor(.white)
                             .padding(.bottom)
@@ -64,7 +69,7 @@ struct MainDataView: View {
                             .foregroundColor(trendColor)
                             .font(.system(size: 60))
                             .onAppear{
-                                fetchPositivityRate(completion: { (retrievedData) in
+                                fetchPositivityRate1(completion: { (retrievedData) in
                                     fetchPositivityRate2(completion: {(retrievedData2) in
                                         let temp = Double(positivityRate) ?? 0.00
                                         let temp2 = (retrievedData2)
@@ -95,7 +100,6 @@ struct MainDataView: View {
                                     Image(systemName: "arrow.clockwise.circle").resizable() .frame(width: 30, height: 30, alignment: .leading).foregroundColor(.yellow)
                                     Text("Refresh").foregroundColor(.yellow)
                                 }
-                                
                             })
                             Spacer()
                             NavigationLink(destination: Help(), label: {
@@ -103,7 +107,6 @@ struct MainDataView: View {
                                     .frame(width: 30, height: 30, alignment: .leading)
                                     .foregroundColor(.init(UIColor.systemGray))
                             })
-                            .navigationBarBackButtonHidden(true)
                             .navigationBarHidden(true)
                         }
                     }.padding(.leading)
@@ -117,12 +120,12 @@ struct MainDataView: View {
         fetchNumPositives1(completion: { (retrievedData) in
             numPositives = "\(retrievedData ?? 0)"
         })
-        fetchPositivityRate(completion: { (retrievedData) in
-            let temp = retrievedData?.nestedData?.first?.first ?? "loading..."
-            let temp2 = temp.dropLast()
-            positivityRate = String(temp2)
+        fetchPositivityRate1(completion: { (retrievedData) in
+            var temp = retrievedData
+            temp = temp.truncate(places: 2)
+            positivityRate = String(temp)
         })
-        fetchPositivityRate(completion: { (retrievedData) in
+        fetchPositivityRate1(completion: { (retrievedData) in
             fetchPositivityRate2(completion: {(retrievedData2) in
                 let temp = Double(positivityRate) ?? 0.00
                 let temp2 = (retrievedData2)
@@ -145,7 +148,6 @@ struct ContentView_Previews: PreviewProvider {
         MainDataView()
     }
 }
-
 
 //For truncating
 extension Double
