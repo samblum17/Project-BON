@@ -69,7 +69,7 @@ struct Help: View {
                 Spacer()
                 
                 //Disclaimer
-                Text("*App not affiliated with Vanderbilt University*").foregroundColor(.white).font(.system(size: 16)).padding(.bottom)
+//                Text("*App not affiliated with Vanderbilt University*").foregroundColor(.white).font(.system(size: 16)).padding(.bottom)
                 
                 //Contact developer button
                 Button(action: {

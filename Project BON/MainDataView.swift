@@ -41,7 +41,7 @@ struct MainDataView: View {
                             .foregroundColor(.yellow)
                             .font(.system(size: 70))
                             .onAppear{
-                                fetchNumPositives1(completion: { (retrievedData) in
+                                fetchNumPositives(completion: { (retrievedData) in
                                     numPositives = retrievedData
                                 })
                             }
@@ -53,7 +53,7 @@ struct MainDataView: View {
                             .foregroundColor(.yellow)
                             .font(.system(size: 60))
                             .onAppear{
-                                fetchPositivityRate1(completion: { (retrievedData) in
+                                fetchPositivityRate(completion: { (retrievedData) in
                                     let temp = retrievedData
                                     positivityRate = temp
                                 })
@@ -69,21 +69,16 @@ struct MainDataView: View {
                             .foregroundColor(trendColor)
                             .font(.system(size: 60))
                             .onAppear{
-                                //Do some math to compare last week percent to this week percent
-                                fetchPositivityRate1(completion: { (retrievedData) in
-                                    fetchPositivityRate2(completion: {(retrievedData2) in
-                                        let temp = Double(positivityRate.dropLast()) ?? 0.00
-                                        let temp2 = Double(retrievedData2.dropLast()) ?? 0.00
-                                        var trendRate = Double(temp - temp2)
-                                        trendRate = trendRate.truncate(places: 2)
-                                        if (trendRate > 0){
-                                            trend = "+\(trendRate)"
-                                            trendColor = .red
-                                        } else {
-                                            trend = "\(trendRate)"
-                                            trendColor = .green
-                                        }
-                                    })
+                                fetchTrend(completion: { (retrievedData) in
+                                    var trendRate = Double(retrievedData) ?? 0.00
+                                    trendRate = trendRate.truncate(places: 2)
+                                    if (trendRate >= 0){
+                                        trend = "+\(trendRate)"
+                                        trendColor = .red
+                                    } else {
+                                        trend = "\(trendRate)"
+                                        trendColor = .green
+                                    }
                                 })
                             }
                         Text("week-over-week positivity rate trend")
@@ -123,30 +118,27 @@ struct MainDataView: View {
     
     //Refresh button tapped
     func reloadData() {
-        fetchNumPositives1(completion: { (retrievedData) in
+        fetchNumPositives(completion: { (retrievedData) in
             numPositives = retrievedData
         })
-        fetchPositivityRate1(completion: { (retrievedData) in
+        fetchPositivityRate(completion: { (retrievedData) in
             let temp = retrievedData
             positivityRate = temp
         })
-        fetchPositivityRate1(completion: { (retrievedData) in
-            fetchPositivityRate2(completion: {(retrievedData2) in
-                let temp = Double(positivityRate.dropLast()) ?? 0.00
-                let temp2 = Double(retrievedData2.dropLast()) ?? 0.00
-                var trendRate = Double(temp - temp2)
-                trendRate = trendRate.truncate(places: 2)
-                if (trendRate > 0){
-                    trend = "+\(trendRate)"
-                    trendColor = .red
-                } else {
-                    trend = "\(trendRate)"
-                    trendColor = .green
-                }
-            })
+        fetchTrend(completion: { (retrievedData) in
+            var trendRate = Double(retrievedData) ?? 0.00
+            trendRate = trendRate.truncate(places: 2)
+            if (trendRate >= 0){
+                trend = "+\(trendRate)"
+                trendColor = .red
+            } else {
+                trend = "\(trendRate)"
+                trendColor = .green
+            }
         })
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
