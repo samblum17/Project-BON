@@ -1,7 +1,7 @@
 <img src="https://github.com/samblum17/Project-BON/blob/main/Project%20BON/Assets.xcassets/Vandy%20COVID%20Tracker%20Marketing%20Banner.jpeg?raw=true">
 
 ###### Access Vanderbilt University's most recent COVID-19 data in a simple, up-to-date interface.
-Available to beta test through [TestFlight](https://apps.apple.com/us/app/silverware-sorter/id1538396767) soon...
+Currently available to beta test via invite on [TestFlight](https://developer.apple.com/testflight/).
 
 ## App Highlights:
 Vandy COVID Tracker is the easiest way to retrieve the most recent weekly case data pulled directly from the university's dashboard. 
