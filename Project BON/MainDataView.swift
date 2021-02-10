@@ -70,7 +70,7 @@ struct MainDataView: View {
                             .font(.system(size: 60))
                             .onAppear{
                                 fetchTrend(completion: { (retrievedData) in
-                                    var trendRate = Double(retrievedData) ?? 0.00
+                                    var trendRate = Double(retrievedData.dropLast()) ?? 0.00
                                     trendRate = trendRate.truncate(places: 2)
                                     if (trendRate >= 0){
                                         trend = "+\(trendRate)"
@@ -126,7 +126,7 @@ struct MainDataView: View {
             positivityRate = temp
         })
         fetchTrend(completion: { (retrievedData) in
-            var trendRate = Double(retrievedData) ?? 0.00
+            var trendRate = Double(retrievedData.dropLast()) ?? 0.00
             trendRate = trendRate.truncate(places: 2)
             if (trendRate >= 0){
                 trend = "+\(trendRate)"
